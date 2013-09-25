@@ -3,16 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Flow Control | HAL</title>
+  <title>Archives: 2013 | HAL</title>
   <meta name="author" content="Red Hat, Inc.">
-  
-  <meta name="description" content="Within Ajax applications you need to manage a lot of interaction and RPC related asynchronous events. The control flow structures become hard to understand and yield unpredicatable results.
-We created a re-usable GWT module that provides some higher order control structures that you can use to tame the asynchronous callback beast. It’s been inspired by Async.js, but aligns with the core GWT API’s more naturally.">
   
   
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-  <meta property="og:title" content="Flow Control"/>
+  
   <meta property="og:site_name" content="HAL"/>
 
   
@@ -159,12 +156,9 @@ We created a re-usable GWT module that provides some higher order control struct
 
         <!-- body -->
         
-<ol class="breadcrumb">
-    <li><a href="/blog/index.html" title="Blog">Blog</a></li>
-    <li>/</li>
-    <li class="active">Flow Control</li>
-</ol>
 
+  
+    
 
 <article class="post">
   <div class="row">
@@ -188,7 +182,7 @@ We created a re-usable GWT module that provides some higher order control struct
       <header><div class="page-header">
         
   
-    <h1 class="title">Flow Control</h1>
+    <h1 class="title"><a href="/2013/09/25/flow-control/">Flow Control</a></h1>
   
 
       </div></header>
@@ -198,66 +192,186 @@ We created a re-usable GWT module that provides some higher order control struct
 <p>Within Ajax applications you need to manage a lot of interaction and RPC related asynchronous events. The control flow structures become hard to understand and yield unpredicatable results.
 We created a re-usable GWT module that provides some higher order control structures that you can use to tame the asynchronous callback beast. It’s been inspired by Async.js, but aligns with the core GWT API’s more naturally.</p>
 </blockquote>
-<a id="more"></a>
-
-<script src="https://gist.github.com/6086876.js"></script>
-
-
-
-<h2>Example: Waterfall Execution</h2>
-<p>Runs an array of functions in series, working on a shared context. However, if any of the functions pass an error to the callback, the next function is not executed and the outcome is immediately called with the error.</p>
-<script src="https://gist.github.com/6087016.js"></script>
-
-
-<p><strong>Step by Step</strong></p>
-<ol>
-<li>Create some executable command (aka Function)</li>
-<li>Create a command that should be run once the first one finishes</li>
-<li>The final callback to be invoked when the waterfall execution finishes. The StringBuffer acts as a shared context object</li>
-<li>Invoke the waterfall execution, providing a shared context (StringBuffer) and a number of function to be executed</li>
-</ol>
-<p><strong>Sources &amp; Maven Coordinates</strong></p>
-<p>The sources for the control API can be found at github:</p>
-<p><a href="https://github.com/hal/core/tree/master/flow/core" target="_blank">https://github.com/hal/core/tree/master/flow/core</a></p>
-<p>The maven artefacts resides with the JBoss repositories:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
-<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.jboss.as<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
-<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>jboss-as-console-flow<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
-<span class="tag">&lt;<span class="title">version</span>&gt;</span>1.6.3.Final<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
-</pre></td></tr></table></figure>
-
-<p><strong>GWT Module Setup</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">module</span> <span class="attribute">rename-to</span>=<span class="value">"your_module"</span>&gt;</span>
-[...]
-<span class="tag">&lt;<span class="title">inherits</span> <span class="attribute">name</span>=<span class="value">"org.jboss.gwt.flow.Flow"</span>/&gt;</span>
-<span class="tag">&lt;/<span class="title">module</span>&gt;</span>
-</pre></td></tr></table></figure>
-
 
         
       </div>
       <footer><div class="article-comment">
         
-<section id="comment">
-  <div id="disqus_thread" class="article-comment">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
       </div></footer>
     </div>
   </div>
 </article>
+
+  
+    
+
+<article class="post">
+  <div class="row">
+
+    <!-- article.meta -->
+    <div class="span2 article-meta">
+      <div class="date">
+        <time datetime="2013-09-24T08:47:00.000Z">
+          <span class="day">24</span>
+          <span class="month">09</span>
+          <span class="year">2013</span>
+        </time>
+      </div>
+      <div class="post-tags">
+        
+  <i class="icon-tags"></i>
+  
+    <a href='/tags/dmr scala dart node.js/'><span class='post-tag'>dmr scala dart node.js</span></a>
+  
+
+      </div>
+    </div>
+
+    <!-- article main -->
+    <div class="span10 article-main">
+      <header><div class="page-header">
+        
+  
+    <h1 class="title"><a href="/2013/09/24/polyglot-dmr/">Polyglot DMR</a></h1>
+  
+
+      </div></header>
+      <div class="article-entry">
+        
+          <p>The <strong>d</strong>ynamic or <strong>d</strong>etyped <strong>m</strong>odel <strong>r</strong>epresentation (DMR) is an API to interact with the management model of a 
+running WildFly instance. There&#39;s an Java API available at <a href="https://github.com/jbossas/jboss-dmr" target="_blank">https://github.com/jbossas/jboss-dmr</a> which is described in 
+the <a href="https://docs.jboss.org/author/display/WFLY8/Detyped+management+and+the+jboss-dmr+library" target="_blank">WildFly Wiki</a>. Though 
+the Java API is very rich and powerful it is somewhat hard to write scripts that perform useful tasks like</p>
+<ul>
+<li>Periodically read the memory and send an SMS / tweet / email when a threshold is reached</li>
+<li>Rollout a deployment over all servers in a cluster</li>
+<li>Monitor the state of an application
+        
+      </div>
+      <footer><div class="article-comment">
+        
+      </div></footer>
+    </div>
+  </div>
+</article>
+
+  
+    
+
+<article class="post">
+  <div class="row">
+
+    <!-- article.meta -->
+    <div class="span2 article-meta">
+      <div class="date">
+        <time datetime="2013-07-18T09:46:00.000Z">
+          <span class="day">18</span>
+          <span class="month">07</span>
+          <span class="year">2013</span>
+        </time>
+      </div>
+      <div class="post-tags">
+        
+  <i class="icon-tags"></i>
+  
+    <a href='/tags/jboss console mobile/'><span class='post-tag'>jboss console mobile</span></a>
+  
+
+      </div>
+    </div>
+
+    <!-- article main -->
+    <div class="span10 article-main">
+      <header><div class="page-header">
+        
+  
+    <h1 class="title"><a href="/2013/07/18/admin-apps/">Admin Apps</a></h1>
+  
+
+      </div></header>
+      <div class="article-entry">
+        
+          <p>If you ever wanted to administer your JBoss servers from your iOS or Andoird phone, checkout these great apps from 
+<a href="https://twitter.com/cvasilak" target="_blank">Christos Vasilakis</a>: </p>
+<ul>
+<li>Android: <a href="https://github.com/cvasilak/JBoss-Admin-Android" target="_blank">https://github.com/cvasilak/JBoss-Admin-Android</a></li>
+<li>iOS: <a href="http://www.cvasilak.org/JBossAdmin.html" target="_blank">http://www.cvasilak.org/JBossAdmin.html</a> <a href="https://itunes.apple.com/us/app/jboss-admin/id523516060?mt=8&uo=4" target="itunes_store" target="_blank"><img src="http://r.mzstatic.com/images/web/linkmaker/badge_appstore-sm.gif" alt="JBoss Admin - Christos Vasilakis" style="border: 0;"/></a></li>
+</ul>
+<p>Keep it up, Christos!</p>
+
+        
+      </div>
+      <footer><div class="article-comment">
+        
+      </div></footer>
+    </div>
+  </div>
+</article>
+
+  
+    
+
+<article class="post">
+  <div class="row">
+
+    <!-- article.meta -->
+    <div class="span2 article-meta">
+      <div class="date">
+        <time datetime="2013-03-05T20:43:00.000Z">
+          <span class="day">05</span>
+          <span class="month">03</span>
+          <span class="year">2013</span>
+        </time>
+      </div>
+      <div class="post-tags">
+        
+  <i class="icon-tags"></i>
+  
+    <a href='/tags/jboss console/'><span class='post-tag'>jboss console</span></a>
+  
+
+      </div>
+    </div>
+
+    <!-- article main -->
+    <div class="span10 article-main">
+      <header><div class="page-header">
+        
+  
+    <h1 class="title"><a href="/2013/03/05/independent-jboss-admin-console/">Independent JBoss Admin Console</a></h1>
+  
+
+      </div></header>
+      <div class="article-entry">
+        
+          <p>We&#39;re currently working on a new feature for the JBoss Admin Console. The console should become independent from the
+rest of the JBoss AS distribution. As the console is built with GWT and &quot;merely&quot; consists of static resources like
+HTML, JavaScript and CSS, the idea is to have a dedicated host which serves these resources. When loading the console
+the user can manage a list of server instances and chooses the one he likes to connect to. The server instances are
+stored in the browsers <a href="http://www.w3.org/TR/webstorage/" target="_blank">local storage</a>, so they will be available the next time the
+console is launched:
+        
+      </div>
+      <footer><div class="article-comment">
+        
+      </div></footer>
+    </div>
+  </div>
+</article>
+
+  
+
+  <div class="container">
+  <div class="row">
+    <div class="span2 offset1 bitpager">
+      
+    </div>
+    <div class="span2 offset7 bitpager">
+      
+    </div>
+  </div>
+</div>
+
 
 
     </div>
@@ -330,7 +444,7 @@ var disqus_shortname = 'jboss-hal';
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
 </script>

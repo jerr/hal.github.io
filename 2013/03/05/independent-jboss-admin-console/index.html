@@ -80,6 +80,7 @@ console is launched:">
 
     <link rel="stylesheet" href="/css/responsive.css" type="text/css"/>
     <link rel="stylesheet" href="/css/syntax.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/hal.css" type="text/css"/>
 </head>
 
 <body>
@@ -162,7 +163,6 @@ console is launched:">
 
         <!-- body -->
         
-
 <ol class="breadcrumb">
     <li><a href="/blog/index.html" title="Blog">Blog</a></li>
     <li>/</li>
@@ -175,16 +175,18 @@ console is launched:">
 
     <!-- article.meta -->
     <div class="span2 article-meta">
-      <div class="date"><time datetime="2013-03-05T20:43:00.000Z">
-        <span class="label label-default" style="margin-left:15px; margin-top:15px">
-            5
-            Mar 2013
-        </span>
-      </time></div>
-      <div class="article-tags">
+      <div class="date">
+        <time datetime="2013-03-05T20:43:00.000Z">
+          <span class="day">05</span>
+          <span class="month">03</span>
+          <span class="year">2013</span>
+        </time>
+      </div>
+      <div class="post-tags">
         
+  <i class="icon-tags"></i>
   
-    <a href='/tags/jboss console/'><span class='label pull-right' style='margin:3px;'>jboss console</span></a>
+    <a href='/tags/jboss console/'><span class='post-tag'>jboss console</span></a>
   
 
       </div>
@@ -302,6 +304,12 @@ offers an easy to use API and hides the awkward implementation details. I will e
       </div>
       <footer><div class="article-comment">
         
+<section id="comment">
+  <div id="disqus_thread" class="article-comment">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
       </div></footer>
     </div>
   </div>
@@ -370,6 +378,18 @@ offers an easy to use API and hides the awkward implementation details. I will e
 
 
 
+
+<script type="text/javascript">
+var disqus_shortname = 'jboss-hal';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
 
 
 
