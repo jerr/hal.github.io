@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8"/>
   
-  <title>Blog: 2013/7 | HAL</title>
+  <title>Console Extensions | HAL</title>
   <meta name="author" content="Red Hat, Inc.">
+  
+  <meta name="description" content="Extensions
+The console provides a compile time extension mechanism. Extensions are regular GWT modules that implement the SPI and follow certain packa"/>
   
   
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-  
+  <meta property="og:title" content="Console Extensions"/>
   <meta property="og:site_name" content="HAL"/>
 
   
@@ -160,104 +163,132 @@
         <!-- body -->
         
 <div class="row">
-
+    <!--Sidebar content-->
     <div class="span3">
-        
-        
-<div class="well sidebar-nav hidden-phone">
-<ul class="nav nav-list">
-    <li class="nav-header">Categories</li>
-    
-    <li><a href="/categories/jboss/">Jboss</a></li>
-    
-    <li><a href="/categories/jboss/console/">Console</a></li>
-    
-    <li><a href="/categories/jboss/console/mobile/">Mobile</a></li>
-    
-    <li><a href="/categories/gwt/">Gwt</a></li>
-    
-    <li><a href="/categories/dmr/">Dmr</a></li>
-    
-    <li><a href="/categories/dmr/scala/">Scala</a></li>
-    
-    <li><a href="/categories/dmr/scala/dart/">Dart</a></li>
-    
-    <li><a href="/categories/dmr/scala/dart/node.js/">Node.js</a></li>
-    
-
-</ul>
-</div>
-
-        
+        <div class='well sidebar-nav'><ul class='nav nav-list'><li class='nav-header'>Developer</li><li><a href='/developer/1_getting-started.html'> Getting Started</a></li><li><a href='/developer/2_look-and-feel.html'> Look And Feel</a></li><li><a href='/developer/3_data-model.html'> Data Model</a></li><li><a href='/developer/4_console-extensions.html'> Console Extensions</a></li><li><a href='/developer/5_Framework.html'> Framework</a></li></ul></div>
     </div>
 
-    <div class="span9">
-        
+    <!--Body content-->
+    <div class="span9 article-main">
+        <article class="page">
+            <header>
+                <div class="page-header">
+                    
   
-    
-
-
-
-<article class="post">
-
-    <header>
-        <div>
-            
-  
-    <h1 class="title"><a href="/2013/07/18/admin-apps/">Admin Apps</a></h1>
+    <h1 class="title">Console Extensions</h1>
   
 
-
-            <i class="icon-calendar"></i>
-            <time datetime="2013-07-18T09:46:00.000Z">
-                <span class="day">18</span> /
-                <span class="month">07</span> /
-                <span class="year">13</span>
-            </time>
-
-        </div>
-    </header>
-    <p/>
-
-    <div class="article-entry">
-        
-        <p>If you ever wanted to administer your JBoss servers from your iOS or Andoird phone, checkout these great apps from 
-<a href="https://twitter.com/cvasilak" target="_blank">Christos Vasilakis</a>: </p>
+                </div>
+            </header>
+            <div class="article-entry">
+                
+                <h3>Extensions</h3>
+<p>The console provides a compile time extension mechanism. Extensions are regular GWT modules that implement the SPI and follow certain packaging conventions.
+Extension are provided as maven dependencies and distributed through the <a href="https://github.com/hal/release-stream/" target="_blank">hal/release-stream build</a>.</p>
+<p><p/>
+Any extension has access to the regular framework contract, all of it&#39;s services and the full dependency injection scope.
+In order the get an idea how extensions are setup, build and integrated it&#39;s best to look at an <a href="https://github.com/teiid/teiid-web-console/tree/teiid-console-parent-1.1.0.Final" target="_blank">example project</a>
+and <a href="https://github.com/hal/release-stream/" target="_blank">hal/release-stream</a>, which acts as an aggregator build.</p>
+<h3>Contract</h3>
+<p>The extension SPI has two main building blocks: </p>
 <ul>
-<li>Android: <a href="https://github.com/cvasilak/JBoss-Admin-Android" target="_blank">https://github.com/cvasilak/JBoss-Admin-Android</a></li>
-<li>iOS: <a href="http://www.cvasilak.org/JBossAdmin.html" target="_blank">http://www.cvasilak.org/JBossAdmin.html</a> <a href="https://itunes.apple.com/us/app/jboss-admin/id523516060?mt=8&uo=4" target="itunes_store" target="_blank"><img src="http://r.mzstatic.com/images/web/linkmaker/badge_appstore-sm.gif" alt="JBoss Admin - Christos Vasilakis" style="border: 0;"/></a></li>
+<li>The extension point</li>
+<li>Gin mixin definitions</li>
 </ul>
-<p>Keep it up, Christos!</p>
+<h4>Extension Point</h4>
+<p>In order to provide an extension point you need to implement a presenter-view (as described in the <a href="/developer/5_Framework.html">Framework section</a>).
+For the extension to be discovered you need to annotate the Presenter proxy with a <code>@SubsystemExtension</code> declaration.
+This instructs the SPI processor to include another place that represents your subsystem specific dialog:</p>
+<figure class="highlight lang-java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransportPresenter</span> {</span>
 
-        
-    </div>
-    <footer><div class="article-comment">
-        
-    </div></footer>
+<span class="annotation">@ProxyCodeSplit</span>
+<span class="annotation">@NameToken</span>(<span class="string">"teiid-transports"</span>)
+<span class="annotation">@SubsystemExtension</span>(name=<span class="string">"Transports"</span>, group = <span class="string">"Teiid"</span>, key=<span class="string">"teiid"</span>)
+<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyProxy</span> 
+		<span class="keyword">extends</span> <span class="title">Proxy</span>&lt;<span class="title">TransportPresenter</span>&gt;,<span class="title">Place</span> {</span>
+    }
 
-</article>
+}
+</pre></td></tr></table></figure>
 
-<hr/>
-<p/>
+<p>The extension will be loaded, initialised and revealed automatically by the core framework according to the following criteria:</p>
+<ul>
+<li><code>name</code> &amp; <code>group</code> declarations: The link name and the group for the left hand side navigation.</li>
+<li><code>key</code>: the subsystem as it is referred to in the DMR model. If the subsystem doesn&#39;t exist, the dialog will not be shown.</li>
+</ul>
+<h4>IOC Mixins</h4>
+<p>The mixins are needed to extend the dependency injection scope and wire up your presenters-views couples and other utility classes (if needed).
+A mixin is declared both as a binding and model extension. The <code>@GinExtension</code> value refers the GWT module descriptor used with the extension.</p>
+<p>The injection points:</p>
+<figure class="highlight lang-java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="annotation">@GinExtension</span>(<span class="string">"org.jboss.as.console.TeiidExtension"</span>)
+<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Extension</span> {</span>
+    AsyncProvider&lt;TransportPresenter&gt; getTransportPresenter();
+}
+</pre></td></tr></table></figure>
 
+<p>The actual binding:</p>
+<figure class="highlight lang-java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="annotation">@GinExtensionBinding</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtensionBinding</span> <span class="keyword">extends</span> <span class="title">AbstractPresenterModule</span> {</span>
 
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected</span> <span class="keyword">void</span> configure() {
+        bindPresenter(TransportPresenter.class,
+        		TransportPresenter.MyView.class,
+                TransportView.class,
+                TransportPresenter.MyProxy.class);
+    }
+}
+</pre></td></tr></table></figure>
 
+<h4>Data Objects (aka AutoBeans)</h4>
+<p>Extension most often provide their own data objects. Take a look at the <a href="/developer/3_data-model.html">Data Model Section</a>.
+It describes how custom AutoBean&#39;s can be provided and used.</p>
+<h4>Gotchas</h4>
+<div class="alert">
+<strong>Packaging Conventions</strong><br/>
 
-  
+Due to the peculiarities of how the GWT compiler works, we need to enforce some constraints on how you can package your extension code:
 
-  <div class="pagination">
-  <div class="row">
-    <div class="span2 offset2 bitpager">
-      
-    </div>
-    <div class="span2 offset6 bitpager">
-      
-    </div>
-  </div>
+- Extension must reside below the package <code>org.jboss.as.console.client.*</code>.
 </div>
+                
+            </div>
+            <footer><div class="article-comment">
+                
+<section id="comment">
+  <div id="disqus_thread" class="article-comment">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 
+            </div></footer>
+        </article>
     </div>
-
 </div>
 
 
@@ -345,7 +376,7 @@ var disqus_shortname = 'jboss-hal';
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
 </script>
