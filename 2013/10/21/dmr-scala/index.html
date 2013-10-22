@@ -3,13 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   
-  <title>scala | HAL</title>
+  <title>DMR Scala | HAL</title>
   <meta name="author" content="Red Hat, Inc.">
+  
+  <meta name="description" content="We made some progress with the Scala client libraries for DMR:
+
+DMR.scala
+DMR.repl"/>
   
   
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-  
+  <meta property="og:title" content="DMR Scala"/>
   <meta property="og:site_name" content="HAL"/>
 
   
@@ -160,114 +165,115 @@
         <!-- body -->
         
 
-  
+
+
+    
+<ol class="breadcrumb">
+    <li><a href="/blog/index.html" title="Blog">Blog</a></li>
+    <li>/</li>
+    <li class="active">DMR Scala</li>
+</ol>
+
+
+<div class="row" id="post">
+
+    <!-- article.meta -->
+    <div class="span3">
+        
+<div class="well sidebar-nav hidden-phone">
+<ul class="nav nav-list">
+    <li class="nav-header">Categories</li>
+    
+    <li><a href="/categories/jboss/">Jboss</a></li>
+    
+    <li><a href="/categories/jboss/console/">Console</a></li>
+    
+    <li><a href="/categories/jboss/console/mobile/">Mobile</a></li>
+    
+    <li><a href="/categories/dmr/">Dmr</a></li>
+    
+    <li><a href="/categories/dmr/scala/">Scala</a></li>
+    
+    <li><a href="/categories/gwt/">Gwt</a></li>
+    
+    <li><a href="/categories/dmr/scala/dart/">Dart</a></li>
+    
+    <li><a href="/categories/dmr/scala/dart/node.js/">Node.js</a></li>
     
 
+</ul>
+</div>
 
+    </div>
 
-<article class="post">
+    <!-- article main -->
+    <div class="span9">
 
-    <header>
-        <div>
-            
+        <article class="post">
+            <header>
+                <div>
+                    
   
-    <h1 class="title"><a href="/2013/10/21/dmr-scala/">DMR Scala</a></h1>
+    <h1 class="title">DMR Scala</h1>
   
 
 
-            <i class="icon-calendar"></i>
-            <time datetime="2013-10-21T08:30:06.000Z">
-                <span class="day">21</span> /
-                <span class="month">10</span> /
-                <span class="year">13</span>
-            </time>
+                    <i class="icon-calendar"></i>
+                    <time datetime="2013-10-21T08:30:06.000Z">
+                        <span class="day">21</span> /
+                        <span class="month">10</span> /
+                        <span class="year">13</span>
+                    </time>
+                    <br/>
 
-        </div>
-    </header>
-    <p/>
+                     
 
-    <div class="article-entry">
-        
-        <p>We made some progress with the Scala client libraries for DMR:</p>
+                </div>
+           </header>
+            <p/>
+            <div class="article-entry">
+                
+                <p>We made some progress with the Scala client libraries for DMR:</p>
 <ul>
 <li><a href="https://github.com/hal/dmr.scala" target="_blank">DMR.scala</a></li>
-<li><a href="https://github.com/hal/dmr.repl" target="_blank">DMR.repl</a>
-        
-    </div>
-    <footer><div class="article-comment">
-        
-    </div></footer>
-
-</article>
-
-<hr/>
-<p/>
-
-
-
-
-  
-    
-
-
-
-<article class="post">
-
-    <header>
-        <div>
-            
-  
-    <h1 class="title"><a href="/2013/09/24/polyglot-dmr/">Polyglot DMR</a></h1>
-  
-
-
-            <i class="icon-calendar"></i>
-            <time datetime="2013-09-24T08:47:00.000Z">
-                <span class="day">24</span> /
-                <span class="month">09</span> /
-                <span class="year">13</span>
-            </time>
-
-        </div>
-    </header>
-    <p/>
-
-    <div class="article-entry">
-        
-        <p>The <strong>d</strong>ynamic or <strong>d</strong>etyped <strong>m</strong>odel <strong>r</strong>epresentation (DMR) is an API to interact with the management model of a 
-running WildFly instance. There&#39;s an Java API available at <a href="https://github.com/jbossas/jboss-dmr" target="_blank">https://github.com/jbossas/jboss-dmr</a> which is described in 
-the <a href="https://docs.jboss.org/author/display/WFLY8/Detyped+management+and+the+jboss-dmr+library" target="_blank">WildFly Wiki</a>. Though 
-the Java API is very rich and powerful it is somewhat hard to write scripts that perform useful tasks like</p>
+<li><a href="https://github.com/hal/dmr.repl" target="_blank">DMR.repl</a><a id="more"></a></li>
+</ul>
+<h3>DMR.scala</h3>
+<p>DMR.scala is a wrapper around the <a href="https://docs.jboss.org/author/display/WFLY8/Detyped+management+and+the+jboss-dmr+library" target="_blank">DMR Java</a> library
+and features a DSL for DMR operations. Using DMR.scala you can use all those neat Scala features when working with
+model nodes:</p>
 <ul>
-<li>Periodically read the memory and send an SMS / tweet / email when a threshold is reached</li>
-<li>Rollout a deployment over all servers in a cluster</li>
-<li>Monitor the state of an application
-        
-    </div>
-    <footer><div class="article-comment">
-        
-    </div></footer>
+<li>Operators to access child nodes</li>
+<li>Model nodes are collection of keys / child nodes (enables you to filter, map, ...)</li>
+<li>Pattern matching and extractors</li>
+</ul>
+<h3>DMR.repl</h3>
+<p>DMR.repl is based on DMR.scala and leverages the Scala REPL shell to work with the management model in a very
+interactive way. You can connect to an arbitrary WildFly instance, execute single DMR operations or write scripts
+to accomplish more complex tasks. See the DMR.repl website for more infos.</p>
+<h3>Upcoming Talk</h3>
+<p>There will be a short introduction of both libraries at the JBoss <a href="http://onedaytalk.org/" target="_blank">OneDayTalk</a> as part of
+Emanuel Muckenhubers talk about the <a href="http://onedaytalk.org/index.php/program?id=168" target="_blank">WildFly 8 CLI</a>.</p>
 
-</article>
-
-<hr/>
-<p/>
-
-
-
-
-  
-
-  <div class="pagination">
-  <div class="row">
-    <div class="span2 offset2 bitpager">
-      
-    </div>
-    <div class="span2 offset6 bitpager">
-      
-    </div>
+                
+            </div>
+            <footer><div class="article-comment">
+                
+<section id="comment">
+  <div id="disqus_thread" class="article-comment">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
+</section>
+
+            </div></footer>
+        </article>
+    </div>
+
+
 </div>
+
+
+
 
 
     </div>
@@ -354,7 +360,7 @@ var disqus_shortname = 'jboss-hal';
   var dsq = document.createElement('script');
   dsq.type = 'text/javascript';
   dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 }());
 </script>
